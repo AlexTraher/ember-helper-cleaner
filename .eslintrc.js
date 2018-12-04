@@ -16,7 +16,7 @@ module.exports = {
     // node files
     {
       files: [
-        'tests/dummy/**/*.js'
+        'tests/dummy/**/*.js',
       ],
       parserOptions: {
         ecmaVersion: 2017,
@@ -25,6 +25,19 @@ module.exports = {
       env: {
         browser: true,
         node: false
+      },
+      rules: {
+        'node/no-unsupported-features/es-syntax': ['never']
+      }
+    },
+    {
+      files: [
+        'helper-finder.js',
+        'index.js'
+      ],
+      parserOptions: {
+        ecmaVersion: 2017,
+        sourceType: 'module'
       },
       rules: {
         'node/no-unsupported-features/es-syntax': ['never']

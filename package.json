@@ -2,17 +2,21 @@
   "name": "ember-helper-cleaner",
   "version": "0.0.1",
   "description": "gives you a list of your unused helpers and lets you get rid of them",
-  "main": "index.js",
+  "main": "dist/index.min.js",
   "scripts": {
-    "test": "mocha tests/tests.js",
-    "lint": "eslint index.js tests/"
+    "test": "npm run build && mocha tests/tests.js --require babel-register",
+    "lint": "eslint index.js tests/",
+    "build": "rollup -c"
   },
   "author": "alex.traher@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "babel-register": "^6.26.0",
     "eslint": "^5.9.0",
     "eslint-plugin-node": "^8.0.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "rollup": "^0.67.4",
+    "rollup-plugin-multi-entry": "^2.0.2"
   },
   "dependencies": {
     "ember-template-recast": "^1.2.0",
