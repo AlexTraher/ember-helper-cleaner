@@ -1,7 +1,7 @@
 import multiEntry from "rollup-plugin-multi-entry";
 
 export default {
-  input: ['index.js', 'helper-finder.js'],
+  input: ['src/helper-finder.js'],
   plugins: [multiEntry()],
   output: { 
     file: 'lib/index.js',

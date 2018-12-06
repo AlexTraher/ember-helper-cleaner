@@ -2,7 +2,7 @@
   "name": "ember-helper-cleaner",
   "version": "0.0.1",
   "description": "gives you a list of your unused helpers and lets you get rid of them",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha tests/tests.js --require @babel/register --require babel-polyfill --recursive",
     "lint": "eslint index.js src/ tests/",
@@ -10,6 +10,7 @@
   },
   "author": "alex.traher@gmail.com",
   "license": "ISC",
+  "preferGlobal": true,
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
@@ -28,5 +29,8 @@
   },
   "babel": {
     "presets": ["@babel/preset-env"]
+  },
+  "bin": {
+    "ember-helper-cleaner": "bin/index.js"
   }
 }

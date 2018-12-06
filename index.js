@@ -1,3 +1,3 @@
-import { getUnusedHelpers } from './src/helper-finder';
+const { getUnusedHelpers } = require('./lib');
 
 getUnusedHelpers(process.cwd());
