@@ -1,3 +1,3 @@
-import { getUnusedHelpers } from './helper-finder';
+import { getUnusedHelpers } from './src/helper-finder';
 
 getUnusedHelpers(process.cwd());

@@ -3,14 +3,12 @@ import { parse, transform } from 'ember-template-recast';
 import fs from 'fs';
 import camelCase from 'lodash.camelcase';
 
-
 export function getHelpers(pathName) {
   const helperPaths = globby.sync(`${pathName}/app/helpers/*.js`, { absolute: true });
 
   if (!helperPaths) {
     throw new Error('no helpers found');
   }
-
 
   return helperPaths.reduce((helperObj, path) => {
     helperObj = helperObj || {};
@@ -21,15 +19,13 @@ export function getHelpers(pathName) {
   }, {});
 }
 
-
-export function getUnusedHelpers(pathName) {
+export function getUnusedHelpers(pathName, showOutput=true) {
   const files = globby.sync(`${pathName}/app/**/*.hbs`, { absolute: true });
 
   const HELPER_COUNT = getHelpers(pathName);
 
-
   files.forEach((file) => {
-    const fileText = fs.readFileSync(file, { encoding: 'UTF-8'});
+    const fileText = fs.readFileSync(file, { encoding: 'UTF-8' });
     const ast = parse(fileText);
 
     transform(ast, () => {
@@ -46,7 +42,10 @@ export function getUnusedHelpers(pathName) {
     })
   });
 
-  printOutput(HELPER_COUNT);
+  if (showOutput) {
+    printOutput(HELPER_COUNT);
+  }
+
   return HELPER_COUNT;
 }
 
@@ -80,6 +79,3 @@ function printOutput(HELPER_COUNT) {
   });
 
 }
-
-
-

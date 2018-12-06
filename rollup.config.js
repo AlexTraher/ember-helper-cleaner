@@ -4,7 +4,7 @@ export default {
   input: ['index.js', 'helper-finder.js'],
   plugins: [multiEntry()],
   output: { 
-    file: 'dist/index.js',
+    file: 'lib/index.js',
     format: 'cjs',
     sourceMap: 'inline',
   },

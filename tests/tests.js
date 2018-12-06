@@ -1,18 +1,18 @@
-const assert = require('assert');
-const { describe, it } = require('mocha');
-const { 
+import assert from 'assert';
+import { describe, it } from 'mocha';
+import { 
   getHelpers,
   getUnusedHelpers,
   processMustacheOrSubStatement,
-} = require('../dist/index');
-const path = require('path');
+} from '../src/helper-finder';
+import path from 'path';
 
 describe('Finding unused Helpers', function() {
   
   const pathName = path.resolve(__dirname, 'dummy');
 
   it('should get a list of unused helpers from the app', function() {
-    const helperCount = getUnusedHelpers(pathName);
+    const helperCount = getUnusedHelpers(pathName, false);
     
     assert.deepStrictEqual(helperCount, {
       used: 2,
@@ -49,7 +49,5 @@ describe('Finding unused Helpers', function() {
       assert.deepStrictEqual(helperCountStub, expectedHelperCount);
     });
   });
-
-  
 
 });
