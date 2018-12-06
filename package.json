@@ -1,6 +1,6 @@
 {
   "name": "ember-helper-cleaner",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "gives you a list of your unused helpers and lets you get rid of them",
   "main": "index.js",
   "scripts": {
@@ -32,5 +32,13 @@
   },
   "bin": {
     "ember-helper-cleaner": "bin/index.js"
+  },
+  "homepage": "https://github.com/AlexTraher/ember-helper-cleaner/",
+  "bugs": {
+    "url": "https://github.com/AlexTraher/ember-helper-cleaner/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexTraher/ember-helper-cleaner.git"
   }
 }
