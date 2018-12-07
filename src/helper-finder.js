@@ -4,7 +4,19 @@ import fs from 'fs';
 import camelCase from 'lodash.camelcase';
 
 export function getHelpers(pathName) {
-  const helperPaths = globby.sync(`${pathName}/app/helpers/*.js`, { absolute: true });
+  const appPaths = globby.sync(`${pathName}/app/helpers/*.js`, { absolute: true });
+  const inRepoAddonPaths = globby.sync(
+    `${pathName}/lib/**/addon/helpers/*.js`,
+    { absolute: true }
+  );
+
+  let helperPaths;
+
+  if (!appPaths) {
+    helperPaths = inRepoAddonPaths;
+  } else {
+    helperPaths = appPaths.concat(inRepoAddonPaths);
+  }
 
   if (!helperPaths) {
     throw new Error('no helpers found');
@@ -20,7 +32,10 @@ export function getHelpers(pathName) {
 }
 
 export function getUnusedHelpers(pathName, showOutput=true) {
-  const files = globby.sync(`${pathName}/app/**/*.hbs`, { absolute: true });
+  const appFiles = globby.sync(`${pathName}/app/**/*.hbs`, { absolute: true });
+  const inRepoAddonFiles = globby.sync(`${pathName}/lib/**/*.hbs`, { absolute: true });
+
+  const files = appFiles.concat(inRepoAddonFiles);
 
   const HELPER_COUNT = getHelpers(pathName);
 

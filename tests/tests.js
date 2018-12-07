@@ -15,6 +15,9 @@ describe('Finding unused Helpers', function() {
     const helperCount = getUnusedHelpers(pathName, false);
     
     assert.deepStrictEqual(helperCount, {
+      addonUnused: 0,
+      addonUsed: 1,
+      appUsed: 1,
       used: 2,
       unused: 0,
       usedInComponent: 1,
@@ -26,6 +29,9 @@ describe('Finding unused Helpers', function() {
     const helperCountShell = getHelpers(pathName);
 
     assert.deepStrictEqual(helperCountShell, {
+      addonUnused: 0,
+      addonUsed: 0,
+      appUsed: 0,
       used: 0,
       unused: 0,
       usedInComponent: 0,
@@ -48,6 +54,14 @@ describe('Finding unused Helpers', function() {
 
       assert.deepStrictEqual(helperCountStub, expectedHelperCount);
     });
+  });
+
+  it('should find helpers in in-repo-addons successfully', function() {
+    const helperCount = getUnusedHelpers(pathName, false);
+
+    assert.strictEqual(helperCount.addonUnused, 0);
+    assert.strictEqual(helperCount.addonUsed, 1);
+    assert.strictEqual(helperCount.appUsed, 1);
   });
 
 });
